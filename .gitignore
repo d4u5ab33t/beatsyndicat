@@ -3,15 +3,22 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
+*.so
+.Python
 
 # Virtual environments
 .venv/
 venv/
 env/
+ENV/
 
 # OS-generated files
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+*~
+.#*
 
 # Project runtime data
 .cache/
@@ -21,27 +28,63 @@ output/
 exports/
 renders/
 *.sqlite3
+*.sqlite
 *.db
+*.db-journal
 
 # Secrets / environment
 .env
 .env.*
 !.env.example
+secrets.yaml
+config/secrets.yaml
 
 # Build / packaging
 build/
 dist/
 .eggs/
 *.egg-info/
+*.egg
+*.whl
 
 # Editor / IDE
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
+.vim/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+.DS_Store
 
-# Local data
+# Local data (large files)
 data/
 cache/
 clippool/
 projects/
 models/
 knowledge/
+database/
+.pimp/
+
+# Test & coverage
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.hypothesis/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Misc
+*.pid
+*.seed
+*.version
+*.bak
