@@ -1,0 +1,33 @@
+# ================================================================
+# WE.ED.IT & BeatSyndicat - Python Dependencies
+# ================================================================
+# Core & Async
+python-dotenv>=1.0.1
+pyyaml>=6.0.1
+pydantic>=2.7.0
+pydantic-settings>=2.2.0
+asyncio>=3.4.3
+aiohttp>=3.9.5
+httpx>=0.27.0
+websockets>=12.0
+click>=8.1.7
+rich>=13.7.1
+schedule>=1.2.1
+
+# Database & Caching
+asyncpg>=0.29.0
+sqlalchemy>=2.0.30
+redis>=5.0.4
+psycopg2-binary>=2.9.9
+
+# Data & Math
+numpy>=1.26.4
+pandas>=2.2.2
+scipy>=1.13.0
+scikit-learn>=1.4.2
+networkx>=3.3
+
+# Testing & Linting
+pytest>=8.2.0
+pytest-asyncio>=0.23.6
+ruff>=0.4.4
