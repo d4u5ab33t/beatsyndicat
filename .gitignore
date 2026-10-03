@@ -1,0 +1,47 @@
+# Byte-compiled / optimized Python files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Project runtime data
+.cache/
+logs/
+*.log
+output/
+exports/
+renders/
+*.sqlite3
+*.db
+
+# Secrets / environment
+.env
+.env.*
+!.env.example
+
+# Build / packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Local data
+data/
+cache/
+clippool/
+projects/
+models/
+knowledge/

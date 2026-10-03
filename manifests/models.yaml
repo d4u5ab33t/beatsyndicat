@@ -1,0 +1,23 @@
+version: "1.0"
+name: beatsyndicat-models
+models:
+  clip:
+    status: ready
+    version: v1.0.0
+    target_device: cuda
+  whisper:
+    status: ready
+    version: v1.0.0
+    target_device: cpu
+  yolo:
+    status: ready
+    version: v1.0.0
+    target_device: cuda
+  dinov2:
+    status: ready
+    version: v1.0.0
+    target_device: cuda
+  beatsync:
+    status: ready
+    version: v1.0.0
+    target_device: gpu

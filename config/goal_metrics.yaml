@@ -1,0 +1,20 @@
+goals:
+  trend_detection_precision: 0.85
+  trend_detection_recall: 0.75
+  breakout_prediction_accuracy: 0.80
+  subculture_discovery_window_days: 30
+  creative_generation_per_month: 1000
+  self_correction_error_reduction: 0.15
+
+thresholds:
+  min_authenticity_score: 0.65
+  max_bot_saturation: 0.10
+  signal_velocity_window_hours: 72
+  breakout_probability_target: 0.75
+
+telemetry:
+  interval_seconds: 300
+  levels:
+    - info
+    - warning
+    - error

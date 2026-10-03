@@ -1,0 +1,31 @@
+version: "1.0"
+name: beatsyndicat-core
+release: Genesis
+system:
+  name: BeatSyndicat
+  owner: WE.ED.IT
+  description: Autonomous cultural intelligence workstation
+
+layers:
+  bootstrap:
+    enabled: true
+    description: Workspace creation, dependency setup and database bootstrap
+  platform:
+    enabled: true
+    description: Config, manifests, runtime directory setup
+  ai:
+    enabled: true
+    description: Model registry, inference and learning stack
+  knowledge:
+    enabled: true
+    description: Knowledge graph, semantic index and clip pool
+
+paths:
+  root: .
+  config: config
+  manifests: manifests
+  agents: agents
+  database: database
+  cache: cache
+  knowledge: knowledge
+  models: models

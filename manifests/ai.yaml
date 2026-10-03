@@ -1,0 +1,16 @@
+version: "1.0"
+name: beatsyndicat-ai
+model_registry:
+  clip: ready
+  whisper: ready
+  yolo: ready
+  dinov2: ready
+  beatsync: ready
+  cutclaw: ready
+
+features:
+  trend_detection: enabled
+  sentiment_analysis: enabled
+  forecasting: enabled
+  knowledge_graphs: enabled
+  semantic_search: enabled
