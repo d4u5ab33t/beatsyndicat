@@ -1,39 +1,4 @@
-project:
-  name: beatsyndicat
-  version: 10.0.0
-  release: Genesis
-  root: .
-  timezone: UTC
-  sacred_drop: "13:28"
-  sacred_gap: "04:20"
+# NOTE: this file intentionally re-exports the BaseAgent class for package-level imports.
+from .base import BaseAgent
 
-paths:
-  root: .
-  config: config
-  manifests: manifests
-  agents: agents
-  packages: packages
-  cache: cache
-  database: database
-  logs: logs
-  output: output
-  exports: exports
-  renders: renders
-
-runtime:
-  python_version: "3.10+"
-  env_file: .env
-  log_level: INFO
-
-bootstrap:
-  create_virtualenv: true
-  install_requirements: true
-  run_verify: true
-
-platforms:
-  default: local
-  allowed:
-    - local
-    - linux
-    - windows
-    - wsl
+__all__ = ["BaseAgent"]
