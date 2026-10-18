@@ -1,117 +1,179 @@
-# BeatSyndicat project configuration
-project:
-  name: beatsyndicat
-  version: 10.0.0
-  release: Genesis
-  root: .
-  timezone: UTC
-  sacred_drop: "13:28"
-  sacred_gap: "04:20"
-  enabled: true
-  active_stacks:
-    - platform
-    - plugin
-    - ai_models
-    - database
-    - knowledge
-    - clippool
-    - agent_swarm
+# BeatSyndicat Manual
 
-paths:
-  root: .
-  config: config
-  manifests: manifests
-  agents: agents
-  packages: packages
-  cache: cache
-  database: database
-  logs: logs
-  output: output
-  exports: exports
-  renders: renders
-  models: models
-  plugins: plugins
-  knowledge: knowledge
-  clippool: clippool
+BeatSyndicat is a Python-based project scaffold for an autonomous creative intelligence workstation. It is organized around stack-oriented directories for platform configuration, models, plugins, knowledge, media, and agent runtime state.
 
-runtime:
-  python_version: "3.10+"
-  env_file: .env
-  log_level: INFO
+## Project overview
 
-bootstrap:
-  create_virtualenv: true
-  install_requirements: true
-  run_verify: true
+The repository is structured to support a layered runtime:
 
-platforms:
-  default: local
-  allowed:
-    - local
-    - linux
-    - windows
-    - wsl
+- Platform stack: config, manifests, logs, exports, renders
+- Plugin stack: creative and rendering plugins
+- AI model stack: model registry and checkpoints
+- Database stack: local telemetry and knowledge storage
+- Knowledge stack: semantic graph, styles, motion, and story data
+- ClipPool stack: media and ratio-based pools
+- Agent swarm: autonomous runtime agents
 
-stack_manifest:
-  platform:
-    description: Core runtime, config, logs, and metadata
-    directories:
-      - config
-      - manifests
-      - logs
-      - renders
-      - exports
-      - projects/demo
-  plugin:
-    description: Creative plugin library
-    directories:
-      - plugins/vision
-      - plugins/story
-      - plugins/music
-      - plugins/physics
-      - plugins/render
-      - plugins/training
-      - plugins/export
-      - plugins/quality
-      - plugins/style
-  ai_models:
-    description: AI model registry and checkpoints
-    directories:
-      - models/clip
-      - models/siglip
-      - models/dinov2
-      - models/yolo
-      - models/sam2
-      - models/whisper
-      - models/scenedetect
-      - models/beatsync
-      - models/cutclaw
-  database:
-    description: Local telemetry and knowledge DB
-    directories:
-      - database
-  knowledge:
-    description: Semantic graph, stories, style and motion knowledge
-    directories:
-      - knowledge/knowledge
-      - knowledge/semantic
-      - knowledge/story
-      - knowledge/style
-      - knowledge/motion
-      - knowledge/color
-  clippool:
-    description: Multi-ratio media pool
-    directories:
-      - clippool/16_9
-      - clippool/9_16
-      - clippool/1_1
-      - clippool/new
-  agent_swarm:
-    description: Autonomous agent runtime and telemetry
-    directories:
-      - agents/scout
-      - agents/analyst
-      - agents/bridge
-      - agents/cartographer
-      - agents/oracle
-      - agents/autopsy
+The main entrypoints are:
+
+- `main.py` — command-line entry point
+- `bootstrap.py` — environment and stack bootstrap
+- `verify.py` — integrity verification
+- `setup.sh` / `setup.ps1` — environment bootstrap helpers
+
+## Quick start
+
+### Linux/macOS
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+python bootstrap.py --root .
+python verify.py --root .
+python main.py --agent all --once
+```
+
+### Windows PowerShell
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+python bootstrap.py --root .
+python verify.py --root .
+python main.py --agent all --once
+```
+
+### One-command setup helpers
+
+```bash
+bash setup.sh
+```
+
+```powershell
+.\setup.ps1
+```
+
+## Supported commands
+
+### Project bootstrap
+
+```bash
+python main.py --bootstrap
+```
+
+This invokes the stack manager to initialize the project structure and bootstrap runtime state.
+
+### Integrity verification
+
+```bash
+python main.py --verify
+```
+
+This validates the project layout and required runtime paths.
+
+### Single-cycle execution
+
+```bash
+python main.py --once
+```
+
+This runs a one-time agent cycle using the active config.
+
+### Explicit agent run
+
+```bash
+python main.py --agent all --once
+```
+
+You can use `--agent` to target a specific agent or runtime mode.
+
+## Repository structure
+
+```text
+beatsyndicat/
+├── README.md
+├── main.py
+├── bootstrap.py
+├── verify.py
+├── setup.sh
+├── setup.ps1
+├── requirements.txt
+├── .env.example
+├── config/
+│   ├── settings.yaml
+│   ├── defaults.json
+│   └── goal_metrics.yaml
+├── manifests/
+│   ├── core.yaml
+│   ├── ai.yaml
+│   └── models.yaml
+├── agents/
+│   ├── __init__.py
+│   └── base/
+├── core/
+│   ├── __init__.py
+│   └── stack_manager.py
+├── docs/
+│   ├── BOOTSTRAP.md
+│   └── TROUBLESHOOTING.md
+├── database/
+├── cache/
+├── knowledge/
+├── models/
+├── logs/
+├── output/
+├── exports/
+├── renders/
+├── plugins/
+├── clippool/
+└── manifests/
+```
+
+## Configuration
+
+The project relies on YAML and JSON configuration files under `config/` and stack definitions under `manifests/`.
+
+Core config files:
+
+- `config/settings.yaml` — runtime settings
+- `config/defaults.json` — default values
+- `config/goal_metrics.yaml` — project goals and thresholds
+
+Manifest files:
+
+- `manifests/core.yaml` — core stack definition
+- `manifests/ai.yaml` — AI model configuration
+- `manifests/models.yaml` — model registry metadata
+
+## Development notes
+
+- Python 3.10+ is the target runtime.
+- Dependencies are managed through `requirements.txt`.
+- Virtual environments are recommended for local work.
+- The bootstrap scripts ensure base directories exist before running the project.
+
+## Troubleshooting
+
+If bootstrap or verification fails:
+
+1. Confirm Python 3.10+ is installed.
+2. Recreate the venv and reinstall requirements.
+3. Run:
+
+```bash
+python bootstrap.py --root .
+python verify.py --root .
+```
+
+4. Check the project directories under the repository root.
+5. Review logs and configuration values in `config/` and `manifests/`.
+
+## License and status
+
+This project is a local automation scaffold and runtime template for a creative AI stack. It is intended to be extended with custom agents, models, pipeline logic, and project-specific workflows.
+
+For day-to-day use, start with the setup commands above, then move into bootstrap + verify + agent cycle execution.
